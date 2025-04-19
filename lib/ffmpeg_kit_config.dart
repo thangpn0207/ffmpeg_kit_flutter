@@ -257,8 +257,10 @@ class FFmpegKitConfig {
 
   /// Starts an asynchronous FFmpeg execution for the given session.
   ///
-  /// Note that this method returns immediately and does not wait the execution to complete. You must use an
-  /// [FFmpegSessionCompleteCallback] if you want to be notified about the result.
+  /// Note that this method returns immediately and does not wait the execution
+  /// to complete. You must use an
+  /// [FFmpegSessionCompleteCallback] if you want to be notified about
+  /// the result.
   static Future<void> asyncFFmpegExecute(FFmpegSession ffmpegSession) async {
     try {
       await init();
@@ -272,8 +274,10 @@ class FFmpegKitConfig {
 
   /// Starts an asynchronous FFprobe execution for the given session.
   ///
-  /// Note that this method returns immediately and does not wait the execution to complete. You must use an
-  /// [FFprobeSessionCompleteCallback] if you want to be notified about the result.
+  /// Note that this method returns immediately and does not wait the execution
+  /// to complete. You must use an
+  /// [FFprobeSessionCompleteCallback] if you want to be notified
+  /// about the result.
   static Future<void> asyncFFprobeExecute(FFprobeSession ffprobeSession) async {
     try {
       await init();
@@ -285,10 +289,13 @@ class FFmpegKitConfig {
     }
   }
 
-  /// Starts an asynchronous FFprobe execution for the given media information session.
+  /// Starts an asynchronous FFprobe execution for the given media information
+  /// session.
   ///
-  /// Note that this method returns immediately and does not wait the execution to complete. You must use an
-  /// [MediaInformationSessionCompleteCallback] if you want to be notified about the result.
+  /// Note that this method returns immediately and does not wait the execution
+  /// to complete. You must use an
+  /// [MediaInformationSessionCompleteCallback] if you want to be notified about
+  /// the result.
   static Future<void> asyncGetMediaInformationExecute(
       MediaInformationSession mediaInformationSession,
       [int? waitTimeout = null]) async {
@@ -630,9 +637,7 @@ class FFmpegKitConfig {
         return "FAILED";
       case SessionState.completed:
         return "COMPLETED";
-      default:
-        return "";
-    }
+      }
   }
 
   /// Parses [command] into arguments. Uses space character to split the

@@ -2,7 +2,7 @@
 
 ### 0. Updates regarding original FFmpegKit
 
-- Fixed Android V1 bindings
+- Fixed Android and MacOS bindings
 - Upgraded FFmpegKitFlutterPlugin.java to work with Flutter 3.29
 
 ### 1. Features
@@ -40,7 +40,7 @@ Add `ffmpeg_kit_flutter` as a dependency in your `pubspec.yaml file`.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter: 5.1.0
+  ffmpeg_kit_flutter: 1.0.0
 ```
 
 #### 2.1 Packages
@@ -63,7 +63,7 @@ using the following dependency format.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter_<package name>: 5.1.0
+  ffmpeg_kit_flutter_<package name>: 1.0.0
 ```
 
 Note that hyphens in the package name must be replaced with underscores. Additionally, do not forget to use the package
@@ -75,7 +75,7 @@ In order to install the `LTS` variant, append `-LTS` to the version you have for
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter: 5.1.0-LTS
+  ffmpeg_kit_flutter: 1.0.0
 ```
 
 #### 2.4 LTS Releases

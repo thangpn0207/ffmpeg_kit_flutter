@@ -54,7 +54,7 @@ class FFmpegKitFactory {
           statisticsMap["videoFps"],
           statisticsMap["videoQuality"],
           statisticsMap["size"],
-          statisticsMap["time"],
+          (statisticsMap["time"] as double).toInt(),
           statisticsMap["bitrate"],
           statisticsMap["speed"]);
 

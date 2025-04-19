@@ -49,12 +49,12 @@ class FFmpegKitFactory {
 
   static Statistics mapToStatistics(Map<dynamic, dynamic> statisticsMap) =>
       new Statistics(
-          statisticsMap["sessionId"],
-          statisticsMap["videoFrameNumber"],
+          statisticsMap["sessionId"].toInt(),
+          statisticsMap["videoFrameNumber"].toInt(),
           statisticsMap["videoFps"],
           statisticsMap["videoQuality"],
-          statisticsMap["size"],
-          (statisticsMap["time"] as double).toInt(),
+          statisticsMap["size"].toInt(),
+          statisticsMap["time"].toInt(),
           statisticsMap["bitrate"],
           statisticsMap["speed"]);
 

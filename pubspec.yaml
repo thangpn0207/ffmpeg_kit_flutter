@@ -1,13 +1,13 @@
 name: ffmpeg_kit_flutter
-description: FFmpeg Kit for Flutter. Supports Android, iOS and macOS platforms.
+description: FFmpeg Kit for Flutter with updated Android bindings. Supports Android, iOS and macOS platforms.
 repository: https://github.com/arthenica/ffmpeg-kit
 issue_tracker: https://github.com/arthenica/ffmpeg-kit/issues
 homepage: https://github.com/arthenica/ffmpeg-kit
-version: 6.0.4
+version: 1.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=3.1.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 flutter:
   plugin:
@@ -16,6 +16,8 @@ flutter:
         package: com.arthenica.ffmpegkit.flutter
         pluginClass: FFmpegKitFlutterPlugin
       ios:
+        pluginClass: FFmpegKitFlutterPlugin
+      macos:
         pluginClass: FFmpegKitFlutterPlugin
 
 dependencies:

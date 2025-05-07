@@ -1,26 +1,22 @@
-# FFmpegKit for Flutter
+# FFmpegKit for Flutter [![pub](https://img.shields.io/badge/pub-1.2.0-blue)](https://pub.dev/packages/ffmpeg_kit_flutter_new)
 
-### 0. Updates regarding original FFmpegKit
-
-- Fixed Android and MacOS bindings
-- Upgraded FFmpegKitFlutterPlugin.java to work with Flutter 3.29
+## Upgraded version of the original [FFmpegKit](https://github.com/arthenica/ffmpeg-kit).
 
 ### 1. Features
 
+- New Android and MacOS bindings to work with Flutter 3.29
+- Locally sourced `ffmpeg-kit-https-6.0-2.LTS.aar`, [because original artifacts from the remote providers are unavailable](https://github.com/sk3llo/ffmpeg_kit_flutter/issues/5#issuecomment-2847832830)
 - Includes both `FFmpeg` and `FFprobe`
 - Supports
     - `Android`, `iOS` and `macOS`
-    - FFmpeg `v5.1.2`
+    - FFmpeg `v6.0.2-LTS`
     - `arm-v7a`, `arm-v7a-neon`, `arm64-v8a`, `x86` and `x86_64` architectures on Android
     - `Android API Level 24` or later
-      - `API Level 16` on LTS releases
     - `armv7`, `armv7s`, `arm64`, `arm64-simulator`, `i386`, `x86_64`, `x86_64-mac-catalyst` and `arm64-mac-catalyst`
       architectures on iOS
-    - `iOS SDK 12.1` or later
-      - `iOS SDK 10` on LTS releases
+    - `iOS SDK 14.0` or later
     - `arm64` and `x86_64` architectures on macOS
     - `macOS SDK 10.15` or later
-      - `macOS SDK 10.12` on LTS releases
     - Can process Storage Access Framework (SAF) Uris on Android
     - 25 external libraries
 
@@ -36,88 +32,39 @@
 
 ### 2. Installation
 
-Add `ffmpeg_kit_flutter` as a dependency in your `pubspec.yaml file`.
+Add `ffmpeg_kit_flutter_new` as a dependency in your `pubspec.yaml file`.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter: 1.0.0
+  ffmpeg_kit_flutter_new: 1.2.0
 ```
 
-#### 2.1 Packages
-
-`FFmpeg` includes built-in encoders for some popular formats. However, there are certain external libraries that needs
-to be enabled in order to encode specific formats/codecs. For example, to encode an `mp3` file you need `lame` or
-`shine` library enabled. You have to install a `ffmpeg_kit_flutter` package that has at least one of them inside. To
-encode an `h264` video, you need to install a package with `x264` inside. To encode `vp8` or `vp9` videos, you need
-a `ffmpeg_kit_flutter` package with `libvpx` inside.
-
-`ffmpeg-kit` provides eight packages that include different sets of external libraries. These packages are named
-according to the external libraries included. Refer to the
-[Packages](https://github.com/arthenica/ffmpeg-kit/wiki/Packages) wiki page to see the names of those
-packages and external libraries included in each one of them.
-
-#### 2.2 Installing Packages
-
-Installing `ffmpeg_kit_flutter` enables the `https` package by default. It is possible to install the other packages
-using the following dependency format.
-
-```yaml
-dependencies:
-  ffmpeg_kit_flutter_<package name>: 1.0.0
-```
-
-Note that hyphens in the package name must be replaced with underscores. Additionally, do not forget to use the package
-name in the import statements if you install a package.
-
-#### 2.3 Installing LTS Releases
-
-In order to install the `LTS` variant, append `-LTS` to the version you have for the `ffmpeg_kit_flutter` dependency.
-
-```yaml
-dependencies:
-  ffmpeg_kit_flutter: 1.0.0
-```
-
-#### 2.4 LTS Releases
-
-`ffmpeg_kit_flutter` is published in two variants: `Main Release` and `LTS Release`. Both releases share the
-same source code but is built with different settings (Architectures, API Level, iOS Min SDK, etc.). Refer to the
-[LTS Releases](https://github.com/arthenica/ffmpeg-kit/wiki/LTS-Releases) wiki page to see how they differ from each
-other.
-
-#### 2.5 Platform Support
+#### 3. Platform Support
 
 The following table shows Android API level, iOS deployment target and macOS deployment target requirements in
-`ffmpeg_kit_flutter` releases.
+`ffmpeg_kit_flutter_new` releases.
 
-<table>
-<thead>
-<tr>
-<th align="center" colspan="3">Main Release</th>
-<th align="center" colspan="3">LTS Release</th>
-</tr>
-<tr>
-<th align="center">Android<br>API Level</th>
-<th align="center">iOS Minimum<br>Deployment Target</th>
-<th align="center">macOS Minimum<br>Deployment Target</th>
-<th align="center">Android<br>API Level</th>
-<th align="center">iOS Minimum<br>Deployment Target</th>
-<th align="center">macOS Minimum<br>Deployment Target</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">24</td>
-<td align="center">12.1</td>
-<td align="center">10.15</td>
-<td align="center">16</td>
-<td align="center">10</td>
-<td align="center">10.12</td>
-</tr>
-</tbody>
+<table align="center">
+  <thead>
+    <tr>
+      <th align="center" colspan="3">LTS Release</th>
+    </tr>
+    <tr>
+      <th align="center">Android<br>API Level</th>
+      <th align="center">iOS Minimum<br>Deployment Target</th>
+      <th align="center">macOS Minimum<br>Deployment Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">14</td>
+      <td align="center">10.15</td>
+    </tr>
+  </tbody>
 </table>
 
-### 3. Using
+### 4. Using
 
 1. Execute FFmpeg commands.
 
@@ -322,19 +269,3 @@ The following table shows Android API level, iOS deployment target and macOS dep
     FFmpegKitConfig.setFontDirectoryList(["/system/fonts", "/System/Library/Fonts", "<folder with fonts>"]);
     ```
 
-### 4. Test Application
-
-You can see how `FFmpegKit` is used inside an application by running `flutter` test applications developed under
-the [FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-test) project.
-
-### 5. Tips
-
-See [Tips](https://github.com/arthenica/ffmpeg-kit/wiki/Tips) wiki page.
-
-### 6. License
-
-See [License](https://github.com/arthenica/ffmpeg-kit/wiki/License) wiki page.
-
-### 7. Patents
-
-See [Patents](https://github.com/arthenica/ffmpeg-kit/wiki/Patents) wiki page.

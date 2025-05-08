@@ -1,3 +1,8 @@
+## 1.2.1
+
+* Added displaying of Android platform to pub.dev
+* Fixed static analysis issues
+
 ## 1.2.0
 
 * New example project

@@ -1,4 +1,4 @@
-# FFmpegKit for Flutter [![pub](https://img.shields.io/badge/pub-1.2.0-blue)](https://pub.dev/packages/ffmpeg_kit_flutter_new)
+# FFmpegKit for Flutter [![pub](https://img.shields.io/badge/pub-1.2.1-blue)](https://pub.dev/packages/ffmpeg_kit_flutter_new)
 
 ## Upgraded version of the original [FFmpegKit](https://github.com/arthenica/ffmpeg-kit).
 
@@ -36,7 +36,7 @@ Add `ffmpeg_kit_flutter_new` as a dependency in your `pubspec.yaml file`.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter_new: 1.2.0
+  ffmpeg_kit_flutter_new: 1.2.1
 ```
 
 #### 3. Platform Support

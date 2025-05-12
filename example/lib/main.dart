@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Execute FFmpeg command
     await FFmpegKit.executeAsync(
       '-i '
-      '${sampleVideoFile.path} -c:v mpeg4 '
+      '${sampleVideoFile.path} -c:v mpeg4 -preset ultrafast '
       '${tempDir.path}/output.mp4',
       (Session session) async {
         debugPrint('session: ${await session.getOutput()}');

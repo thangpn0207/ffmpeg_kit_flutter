@@ -1,3 +1,8 @@
+## 1.3.0
+
+* Moved from FFmpeg `http` to `full_gpl` for Android
+* Added downloading and unpacking of 6.0.2 `full-gpl` .aar
+
 ## 1.2.1
 
 * Added displaying of Android platform to pub.dev

@@ -1,3 +1,8 @@
+## 1.4.0
+
+* Added build.bat jni
+* Updated Gradle script in order to be able to download and unpack .aar on Windows.
+
 ## 1.3.0
 
 * Moved from FFmpeg `http` to `full_gpl` for Android

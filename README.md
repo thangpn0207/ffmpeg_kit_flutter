@@ -83,117 +83,159 @@ The following table shows Android API level, iOS deployment target and macOS dep
 
 1. Execute FFmpeg commands.
 
-    ```dart  
+```dart  
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 
-FFmpegKit.execute('-i file1.mp4 -c:v mpeg4 file2.mp4').then((session) async { final returnCode = await session.getReturnCode();  
-if (ReturnCode.isSuccess(returnCode)) {  
-// SUCCESS  
-} else if (ReturnCode.isCancel(returnCode)) {  
-// CANCEL  
-} else {  
-// ERROR  
-} });
- ```  
+FFmpegKit.execute('-i file1.mp4 -c:v mpeg4 file2.mp4').then((session) async {
+    final returnCode = await session.getReturnCode();  
+    if (ReturnCode.isSuccess(returnCode)) {  
+    // SUCCESS  
+    } else if (ReturnCode.isCancel(returnCode)) {  
+    // CANCEL  
+    } else {  
+    // ERROR  
+    }
+});
+```  
 2. Each `execute` call creates a new session. Access every detail about your execution from the session created.  
   
-    ```dart  
-  FFmpegKit.execute('-i file1.mp4 -c:v mpeg4 file2.mp4').then((session) async {  
-  
- // Unique session id created for this execution final sessionId = session.getSessionId();  
- // Command arguments as a single string final command = session.getCommand();  
- // Command arguments final commandArguments = session.getArguments();  
- // State of the execution. Shows whether it is still running or completed final state = await session.getState();  
- // Return code for completed sessions. Will be undefined if session is still running or FFmpegKit fails to run it final returnCode = await session.getReturnCode();  
- final startTime = session.getStartTime(); final endTime = await session.getEndTime(); final duration = await session.getDuration();  
- // Console output generated for this execution final output = await session.getOutput();  
- // The stack trace if FFmpegKit fails to run a command final failStackTrace = await session.getFailStackTrace();  
- // The list of logs generated for this execution final logs = await session.getLogs();  
- // The list of statistics generated for this execution (only available on FFmpegSession) final statistics = await (session as FFmpegSession).getStatistics();  
- });  
- ```  
+```dart  
+FFmpegKit.execute('-i file1.mp4 -c:v mpeg4 file2.mp4').then((session) async {  
+    // Unique session id created for this execution
+    final sessionId = session.getSessionId();  
+    // Command arguments as a single string
+    final command = session.getCommand();  
+    // Command arguments
+    final commandArguments = session.getArguments();  
+    // State of the execution. Shows whether it is still running or completed
+    final state = await session.getState();  
+    // Return code for completed sessions. Will be undefined if session is still running or FFmpegKit fails to run it
+    final returnCode = await session.getReturnCode();  
+    final startTime = session.getStartTime();
+    final endTime = await session.getEndTime();
+    final duration = await session.getDuration();  
+    // Console output generated for this execution
+    final output = await session.getOutput();  
+    // The stack trace if FFmpegKit fails to run a command
+    final failStackTrace = await session.getFailStackTrace();  
+    // The list of logs generated for this execution
+    final logs = await session.getLogs();  
+    // The list of statistics generated for this execution (only available on FFmpegSession)
+    final statistics = await (session as FFmpegSession).getStatistics();  
+});
+```  
 3. Execute `FFmpeg` commands by providing session specific `execute`/`log`/`session` callbacks.
 
-    ```dart  
+```dart  
 FFmpegKit.executeAsync('-i file1.mp4 -c:v mpeg4 file2.mp4', (Session session) async {
-
-// CALLED WHEN SESSION IS EXECUTED  
+    // CALLED WHEN SESSION IS EXECUTED  
 }, (Log log) {  
-// CALLED WHEN SESSION PRINTS LOGS  
+    // CALLED WHEN SESSION PRINTS LOGS  
 }, (Statistics statistics) {  
-// CALLED WHEN SESSION GENERATES STATISTICS  
+    // CALLED WHEN SESSION GENERATES STATISTICS  
 });
- ```  
+```  
 4. Execute `FFprobe` commands.  
   
-    ```dart  
-  FFprobeKit.execute(ffprobeCommand).then((session) async {  
-  
- // CALLED WHEN SESSION IS EXECUTED  
- });  
- ```  
+```dart  
+FFprobeKit.execute(ffprobeCommand).then((session) async {  
+    // CALLED WHEN SESSION IS EXECUTED  
+});  
+```  
 5. Get media information for a file/url.
 
-    ```dart  
+```dart  
 FFprobeKit.getMediaInformation('<file path or url>').then((session) async {  
-final information = await session.getMediaInformation();  
-if (information == null) {  
-// CHECK THE FOLLOWING ATTRIBUTES ON ERROR final state = FFmpegKitConfig.sessionStateToString(await session.getState()); final returnCode = await session.getReturnCode(); final failStackTrace = await session.getFailStackTrace(); final duration = await session.getDuration(); final output = await session.getOutput(); } });
- ```  
+    final information = await session.getMediaInformation();  
+    if (information == null) {  
+        // CHECK THE FOLLOWING ATTRIBUTES ON ERROR
+        final state = FFmpegKitConfig.sessionStateToString(await session.getState());
+        final returnCode = await session.getReturnCode();
+        final failStackTrace = await session.getFailStackTrace();
+        final duration = await session.getDuration();
+        final output = await session.getOutput();
+    }
+});
+```  
 6. Stop ongoing FFmpeg operations.  
   
 - Stop all sessions  
-  ```dart  
-  FFmpegKit.cancel();  
- ```- Stop a specific session  
-  ```dart  
-  FFmpegKit.cancel(sessionId);  
- ```  
+```dart  
+FFmpegKit.cancel();
+```
+- Stop a specific session  
+```dart  
+FFmpegKit.cancel(sessionId);  
+```  
 7. (Android) Convert Storage Access Framework (SAF) Uris into paths that can be read or written by  
    `FFmpegKit` and `FFprobeKit`.
 
 - Reading a file:
-  ```dart  
-  FFmpegKitConfig.selectDocumentForRead('*/*').then((uri) {  
-FFmpegKitConfig.getSafParameterForRead(uri!).then((safUrl) { FFmpegKit.executeAsync("-i ${safUrl!} -c:v mpeg4 file2.mp4"); }); });
- ```  
+```dart  
+FFmpegKitConfig.selectDocumentForRead('*/*').then((uri) {  
+    FFmpegKitConfig.getSafParameterForRead(uri!).then((safUrl) {
+        FFmpegKit.executeAsync("-i ${safUrl!} -c:v mpeg4 file2.mp4");
+    });
+});
+```  
 - Writing to a file:  
-  ```dart  
-  FFmpegKitConfig.selectDocumentForWrite('video.mp4', 'video/*').then((uri) {  
- FFmpegKitConfig.getSafParameterForWrite(uri!).then((safUrl) { FFmpegKit.executeAsync("-i file1.mp4 -c:v mpeg4 ${safUrl}"); }); });  
- ```  
+```dart  
+FFmpegKitConfig.selectDocumentForWrite('video.mp4', 'video/*').then((uri) {
+    FFmpegKitConfig.getSafParameterForWrite(uri!).then((safUrl) {
+        FFmpegKit.executeAsync("-i file1.mp4 -c:v mpeg4 ${safUrl}");
+    });
+});  
+```  
 8. Get previous `FFmpeg`, `FFprobe` and `MediaInformation` sessions from the session history.
 
-    ```dart  
+```dart  
 FFmpegKit.listSessions().then((sessionList) {  
-sessionList.forEach((session) { final sessionId = session.getSessionId(); }); });  
-FFprobeKit.listFFprobeSessions().then((sessionList) { sessionList.forEach((session) { final sessionId = session.getSessionId(); }); });  
-FFprobeKit.listMediaInformationSessions().then((sessionList) { sessionList.forEach((session) { final sessionId = session.getSessionId(); }); });
- ```  
+    sessionList.forEach((session) {
+        final sessionId = session.getSessionId();
+    });
+});  
+FFprobeKit.listFFprobeSessions().then((sessionList) {
+    sessionList.forEach((session) {
+        final sessionId = session.getSessionId();
+    });
+});  
+FFprobeKit.listMediaInformationSessions().then((sessionList) {
+    sessionList.forEach((session) {
+        final sessionId = session.getSessionId();
+    });
+});
+```  
 9. Enable global callbacks.  
   
 - Session type specific Complete Callbacks, called when an async session has been completed  
   
-  ```dart  
-  FFmpegKitConfig.enableFFmpegSessionCompleteCallback((session) {  
- final sessionId = session.getSessionId(); });  
- FFmpegKitConfig.enableFFprobeSessionCompleteCallback((session) { final sessionId = session.getSessionId(); });  
- FFmpegKitConfig.enableMediaInformationSessionCompleteCallback((session) { final sessionId = session.getSessionId(); });  
- ```  
+```dart  
+FFmpegKitConfig.enableFFmpegSessionCompleteCallback((session) {
+    final sessionId = session.getSessionId();
+});  
+FFmpegKitConfig.enableFFprobeSessionCompleteCallback((session) {
+    final sessionId = session.getSessionId();
+});  
+FFmpegKitConfig.enableMediaInformationSessionCompleteCallback((session) {
+    final sessionId = session.getSessionId();
+});  
+```  
 - Log Callback, called when a session generates logs
 
-  ```dart  
-  FFmpegKitConfig.enableLogCallback((log) {  
-final message = log.getMessage(); });
- ```  
+```dart  
+FFmpegKitConfig.enableLogCallback((log) {  
+    final message = log.getMessage();
+});
+```  
 - Statistics Callback, called when a session generates statistics  
   
-  ```dart  
-  FFmpegKitConfig.enableStatisticsCallback((statistics) {  
- final size = statistics.getSize(); });  
- ```  
+```dart  
+FFmpegKitConfig.enableStatisticsCallback((statistics) {  
+    final size = statistics.getSize();
+});  
+```  
 10. Register system fonts and custom font directories.
 
-    ```dart  
+```dart  
 FFmpegKitConfig.setFontDirectoryList(["/system/fonts", "/System/Library/Fonts", "<folder with fonts>"]);
- ```
+```

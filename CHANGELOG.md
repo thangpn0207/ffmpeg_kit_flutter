@@ -1,3 +1,11 @@
+## 1.5.0
+
+* Added MacOS support by directly downloading and unpacking frameworks
+
+## 1.4.1
+
+* Updated README.md
+
 ## 1.4.0
 
 * Added build.bat jni

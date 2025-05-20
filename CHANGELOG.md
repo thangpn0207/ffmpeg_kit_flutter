@@ -1,3 +1,7 @@
+## 1.6.0
+
+* Added new seamless Android .aar support
+
 ## 1.5.0
 
 * Added MacOS support by directly downloading and unpacking frameworks

@@ -1,7 +1,7 @@
 
-# FFmpegKit for Flutter [![pub](https://img.shields.io/badge/pub-1.5.0-blue)](https://pub.dev/packages/ffmpeg_kit_flutter_new)
+# FFmpegKit for Flutter [![pub](https://img.shields.io/badge/pub-1.6.0-blue)](https://pub.dev/packages/ffmpeg_kit_flutter_new)
 
-## Upgraded version of the original [FFmpegKit](https://github.com/arthenica/ffmpeg-kit).
+## Upgraded version of the original [Flutter FFmpegKit](https://github.com/arthenica/ffmpeg-kit/tree/main/flutter/flutter).
 
 ### 1. Features
 
@@ -30,31 +30,18 @@
 
 - Licensed under `LGPL 3.0` by default, some packages licensed by `GPL v3.0` effectively
 
-### 2. Known issues
-
-#### Android:
-```
-...
-Running Gradle task 'assembleDebug'...
-*** DOWNLOADING AAR ***
-...android/src/main/java/com/arthenica/ffmpegkit/flutter FFmpegSessionExecuteTask.java:5: error: cannot find symbol
-import com.arthenica.ffmpegkit.FFmpegKitConfig;
-...100 more lines...
-```
-The error above is going to happen during the first run only ONCE. It occurs because downloaded `.aar` cannot be found after Gradle assemble task. Sadly, mentioned `.aar` cannot be bundled along with the package [because of the pub.dev package restrictions](https://dart.dev/tools/pub/publishing#prepare-your-package-for-publication) and always have to be downloaded first.
-
-### 3. Installation
+### 2. Installation
 
 Add `ffmpeg_kit_flutter_new` as a dependency in your `pubspec.yaml file`.
 
 ```yaml
 dependencies:  
- ffmpeg_kit_flutter_new: 1.5.0
+ ffmpeg_kit_flutter_new: 1.6.0
 ```
 
 NOTE: Android know issue:
 
-#### 4. Platform Support
+#### 3. Platform Support
 
 The following table shows Android API level, iOS deployment target and macOS deployment target requirements in  
 `ffmpeg_kit_flutter_new` releases.
@@ -79,7 +66,7 @@ The following table shows Android API level, iOS deployment target and macOS dep
   </tbody>  
 </table>  
 
-### 5. Using
+### 4. Using
 
 1. Execute FFmpeg commands.
 

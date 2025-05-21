@@ -43,10 +43,6 @@ android {
         }
     }
 
-    sourceSets {
-        main.java.srcDirs += "src/main/java"
-    }
-
     defaultConfig {
         minSdk = 24
         versionCode 1

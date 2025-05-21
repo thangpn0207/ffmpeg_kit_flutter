@@ -1,3 +1,8 @@
+## 1.6.1
+
+* Removed manual packaging of prebuilt dependencies for Android
+* Cleaned up unnecessary logs
+
 ## 1.6.0
 
 * Added new seamless Android .aar support

@@ -1,3 +1,13 @@
+## 2.0.0
+
+* Uploaded updated Android .aar, compatible with Google 16 KB requirement
+* Updated `setup_ios.sh` script
+* Removed resource shrinking for Android
+* Updated `setup_ios.sh` script
+* Updated `setup_android.sh` script to include latest FFmpeg 7.0 kit
+* Upgraded `ffmpeg_kit_flutter_android` to 1.7.0
+* Merged @nischhalcodetrade fix for .aar post processing
+
 ## 1.6.1
 
 * Removed manual packaging of prebuilt dependencies for Android
